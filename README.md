@@ -13,7 +13,7 @@ composer require sanzodown/simple-php-crawler
 $crawler = new Crawler("https://www.domain.com/");
 
 // if u need to be authentificated
-$crawler->setLogin("username","password);
+$crawler->setLogin("username","password");
 ```
 
 ### Methods:
