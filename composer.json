@@ -1,0 +1,28 @@
+{
+    "name": "sanzodown/simple-php-crawler",
+    "description": "A simple crawler written in PHP.",
+    "type": "library",
+    "require": {
+        "php": "^7.2",
+        "symfony/css-selector": "^5.2",
+        "ext-curl": "*",
+        "ext-dom": "*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.2",
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sanzodown\\SimplePHPCrawler\\" : "src/",
+            "Test\\" : "tests/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sanzodown",
+            "email": "sanzodown@hotmail.fr"
+        }
+    ]
+}
