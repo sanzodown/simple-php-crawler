@@ -4,7 +4,7 @@ namespace Sanzodown\SimplePHPCrawler;
 
 use Symfony\Component\CssSelector\CssSelectorConverter;
 
-class Crawler
+class Crawler implements CrawlerInterface
 {
     private const CHARSET = "UTF-8";
 
@@ -29,7 +29,7 @@ class Crawler
             curl_setopt($handle, CURLOPT_USERPWD, "$this->username:$this->password");
         }
 
-        curl_setopt($handle, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         $body = curl_exec($handle);
         curl_close($handle);
 
@@ -40,7 +40,7 @@ class Crawler
     {
         $links = [];
 
-        foreach($this->dom->getElementsByTagName('a') as $link) {
+        foreach ($this->dom->getElementsByTagName('a') as $link) {
             $links[] = ['url' => $link->getAttribute('href'), 'text' => $link->nodeValue];
         }
 
@@ -51,7 +51,7 @@ class Crawler
     {
         $images = [];
 
-        foreach($this->dom->getElementsByTagName('img') as $img) {
+        foreach ($this->dom->getElementsByTagName('img') as $img) {
             $images[] = ['url' => $img->getAttribute('src')];
         }
 
@@ -60,14 +60,14 @@ class Crawler
 
     private function convertToHTMLEntities(string $html): string
     {
-        return mb_convert_encoding($html, 'HTML-ENTITIES', Crawler::CHARSET);
+        return mb_convert_encoding($html, 'HTML-ENTITIES', self::CHARSET);
     }
 
     private function parseHtml(string $html): \DOMDocument
     {
         $htmlContent = $this->convertToHTMLEntities($html);
 
-        $dom = new \DOMDocument('1.0', Crawler::CHARSET);
+        $dom = new \DOMDocument('1.0', self::CHARSET);
         @$dom->loadHTML($htmlContent);
 
         return $dom;
@@ -85,7 +85,7 @@ class Crawler
     {
         $array = [];
 
-        foreach($domNodeList as $node){
+        foreach ($domNodeList as $node) {
             $array[] = $this->XMLToArray($node);
         }
 

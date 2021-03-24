@@ -5,8 +5,8 @@ namespace Test;
 use PHPUnit\Framework\TestCase;
 use Sanzodown\SimplePHPCrawler\Crawler;
 
-final class CrawlerTest extends TestCase {
-
+final class CrawlerTest extends TestCase
+{
     public function testInvalidURI(): void
     {
         self::expectExceptionMessage("URI not valid.");
@@ -44,5 +44,4 @@ final class CrawlerTest extends TestCase {
 
         self::assertSame("https://judgehype.com", $selector[0]["attributes"]["href"]);
     }
-
 }
